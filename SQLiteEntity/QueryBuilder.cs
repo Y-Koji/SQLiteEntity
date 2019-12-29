@@ -125,10 +125,10 @@ namespace SQLiteEntity
                 sb.AppendLine("WHERE");
                 foreach (var where in wheres)
                 {
-                    sb.AppendFormat("    {0},\r\n", where);
+                    sb.AppendFormat("    {0} AND\r\n", where);
                 }
 
-                sb.Remove(sb.Length - 3, 3);
+                sb.Remove(sb.Length - 6, 6);
                 sb.AppendLine(";");
             }
             else
