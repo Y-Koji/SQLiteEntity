@@ -3,7 +3,7 @@
 SQLiteの.NET ライブラリ(System.Data.SQLite.Core)専用の、簡易ORマッパ。<br />
 ![](https://i.imgur.com/DIKcQjt.png)
 
-主に利用時に、自動でDB自体、テーブル、項目拡張がされるようになっています。
+主に利用時に、自動でDBの作成、テーブルの作成、テーブル項目の自動拡張がされるようになっています。
 
 # 機能
 - DataContext作成時に、SQLiteのDBファイルを自動生成
