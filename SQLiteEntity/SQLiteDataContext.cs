@@ -125,6 +125,13 @@ namespace SQLiteEntity
             IReadOnlyDictionary<string, SQLiteParameter> wheres = null,
             Action<T> callback = null)
         {
+            await CreateTableIfNothing(typeof(T));
+
+            if (null == wheres)
+            {
+                wheres = new Dictionary<string, SQLiteParameter>();
+            }
+
             Type type = typeof(T);
             List<string> columns = await GetColumnsAsync(type.Name);
 
@@ -168,7 +175,9 @@ namespace SQLiteEntity
 
         public async Task<int> UpdateAsync<T>(T entity)
         {
-            Type type = entity.GetType();
+            await CreateTableIfNothing(typeof(T));
+
+            Type type = typeof(T);
             PropertyInfo idProp = type.GetProperties().Where(x => x.Name.ToLower() == "id").SingleOrDefault();
             if (null == idProp)
             {
@@ -196,6 +205,8 @@ namespace SQLiteEntity
 
         public async Task<int> DeleteAsync<T>(T entity)
         {
+            await CreateTableIfNothing(typeof(T));
+
             Type type = entity.GetType();
             PropertyInfo idProp = type.GetProperties().Where(x => x.Name.ToLower() == "id").SingleOrDefault();
             if (null == idProp)
