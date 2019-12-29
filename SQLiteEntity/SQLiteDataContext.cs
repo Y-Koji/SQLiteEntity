@@ -301,7 +301,7 @@ namespace SQLiteEntity
                 }
                 else
                 {
-                    prop.SetValue(instance, DateTime.MinValue);
+                    prop.SetValue(instance, new byte[0]);
                 }
             }
             #endregion
