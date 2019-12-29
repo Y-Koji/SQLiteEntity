@@ -17,6 +17,7 @@ namespace SQLiteEntityTest
             {
                 Name = "Saito",
                 Age = 20,
+                BlobData = new byte[] { 10, 20, 30 },
                 CreateTime = DateTime.Now,
                 IsDeleted = false,
             }).Result;
@@ -28,6 +29,7 @@ namespace SQLiteEntityTest
             }).Result.Single();
 
             // Update
+            result.BlobData = new byte[] { 100, 101, 102, };
             result.IsDeleted = true;
             result.UpdateTime = DateTime.Now;
             context.UpdateAsync(result).Wait();

@@ -16,6 +16,7 @@ namespace SQLiteEntity
             typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(bool),
             typeof(float), typeof(double),
             typeof(string), typeof(DateTime),
+            typeof(byte[]),
         };
 
         public static IReadOnlyCollection<Type> IntegerTypes { get; } = new List<Type>
@@ -32,6 +33,11 @@ namespace SQLiteEntity
         public static IReadOnlyCollection<Type> RealTypes { get; } = new List<Type>
         {
             typeof(float), typeof(double),
+        };
+
+        public static IReadOnlyCollection<Type> BlobTypes { get; } = new List<Type>
+        {
+            typeof(byte[]),
         };
 
         public static string BuildInsertQuery(Type type)
@@ -218,6 +224,10 @@ namespace SQLiteEntity
             else if (RealTypes.Contains(type))
             {
                 return "REAL";
+            }
+            else if (BlobTypes.Contains(type))
+            {
+                return "BLOB";
             }
             else
             {

@@ -292,6 +292,18 @@ namespace SQLiteEntity
                     prop.SetValue(instance, DateTime.MinValue);
                 }
             }
+            else if (prop.PropertyType == typeof(byte[]))
+            {
+                if (!await reader.IsDBNullAsync(index))
+                {
+                    byte[] value = (byte[]) reader[index];
+                    prop.SetValue(instance, value);
+                }
+                else
+                {
+                    prop.SetValue(instance, DateTime.MinValue);
+                }
+            }
             #endregion
         }
         
